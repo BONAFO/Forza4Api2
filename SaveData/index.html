@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        * {
+            background-color: black;
+        }
+    </style>
+    <script>
+        const save = localStorage.getItem("temp");
+
+        const contenido = new Blob([save], {
+            type: 'application/json'
+        });
+
+        let enlace = document.createElement('a');
+        enlace.href = URL.createObjectURL(contenido);
+        enlace.download = "save.json";
+        document.body.appendChild(enlace);
+        enlace.click();
+        document.body.removeChild(enlace);
+
+        function descargarTxt() {
+            var texto = "Hola, este es un archivo de texto de ejemplo.";
+            var nombreArchivo = "archivo.txt";
+
+            var contenido = new Blob([texto], {
+                type: 'application/json'
+            });
+
+            var enlace = document.createElement('a');
+            enlace.href = URL.createObjectURL(contenido);
+            enlace.download = nombreArchivo;
+
+            document.body.appendChild(enlace);
+
+            enlace.click();
+
+            document.body.removeChild(enlace);
+        }
+    </script>
+
+</body>
+
+</html>

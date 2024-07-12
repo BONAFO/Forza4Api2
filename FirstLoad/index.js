@@ -1,11 +1,21 @@
 const cars = require("./cars.json");
-const { exist, mkdir, write } = require('../resorces');
+const { exist, mkdir, write, read } = require('../resorces');
 const path = require("path");
+const { log } = require("console");
+let data = [];
+try {
+    const { data: datila } = require("../DB/db.cars");
+    data = datila;
+} catch (error) {
+    console.log(error);
+}
 
 const index = [0, 10];
 
 (async() => {
-    const path_main = path.join(__dirname, '../DB/cars/');
+    const path_main = path.join(__dirname, '../DB/');
+
+
 
     if (!exist(path.join(__dirname, '../DB/'))) {
         await mkdir(path.join(__dirname, '../DB/'));
@@ -15,19 +25,18 @@ const index = [0, 10];
         await mkdir(path.join(__dirname, '../DB/cars'));
     }
 
-    for (let i = index[0]; i < index[1]; i++) {
-        const car = cars[i];
-        const invalids = '/:*?¿"<>|'.split("")
-        invalids.map(inv => car.name = car.name.replaceAll(inv, ""))
-        const folder_name = `${car.marca} - ${car.name}`;
-        const url = path.join(__dirname, '../DB/cars/') + folder_name;
+
+    let i = 0;
+    let interval = setInterval(async() => {
 
 
+        if (i < 10) {
+            const car = cars[i];
+            const invalids = '/:*?¿"<>|'.split("")
+            invalids.map(inv => car.name = car.name.replaceAll(inv, ""))
+            const folder_name = `${car.marca} - ${car.name}`;
+            const url = path.join(__dirname, '../DB/cars/') + folder_name;
 
-
-
-        if (!exist(url)) {
-            await mkdir(url);
 
             const data = {
                 "name": car.name,
@@ -37,21 +46,93 @@ const index = [0, 10];
                 "special_lv": 0,
                 "money": 0
             };
-            const init_data = `const data = 
-        ${JSON.stringify(data)}
-        
+
+            // let txt = "{"
 
 
-        
-        `
+            // Object.keys(data).map(k => {
+            //     txt += `"${k}"  : "${data[k]}",`;
+            // })
 
-            await write(url + "/init.js", init_data)
-            await write(url + "/init.json", JSON.stringify(data))
+
+            // txt += "}";
+
+
+            // db_file += `${txt},\n`
+
+            prepare_db_file(data)
+
+
+            if (!exist(url)) {
+                await mkdir(url);
+
+
+
+
+                const init_data = `const data = 
+                ${JSON.stringify(data)}
+            `
+
+                await write(url + "/init.json", JSON.stringify(data))
+
+            }
+            console.log(`CREATED ${car.name}`);
+        } else {
+            clearInterval(interval)
+                // db_file += `];`;
+            await write(path_main + "db.cars.js", parse_data_to_text())
         }
+        i++
 
-        console.log(`CREATED ${car.name}`);
-    }
+    }, 500);
 
 
 
 })()
+
+//LAST INDEX
+
+
+
+const prepare_db_file = (newdata) => {
+    const found = data.filter(d => d.id == newdata.id)[0];
+    if (found == undefined) {
+        data.push(found)
+    }
+}
+
+const parse_data_to_text = () => {
+    let db_file = `const data =[ \n`
+    data.map((d) => {
+        let txt = "{"
+        Object.keys(d).map(k => {
+            txt += `"${k}"  : "${d[k]}",`;
+        })
+        txt += "},\n";
+
+        db_file += txt
+    })
+    db_file += `];
+    
+    
+    try {
+    module.exports = {
+        data
+    };
+    } catch (error) {
+
+    }
+    
+    `;
+
+
+    return db_file
+
+
+
+
+
+
+
+
+}
