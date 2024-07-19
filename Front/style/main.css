@@ -1,3 +1,23 @@
-* {
-    background-color: #000000;
+* {}
+
+.tcwh {
+    color: white;
+}
+
+td {
+    background-color: #000000b3;
+}
+
+.separator {
+    border: .1rem solid #000000b3;
+    opacity: .3;
+}
+
+.background {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    z-index: -1;
+    opacity: .8;
 }

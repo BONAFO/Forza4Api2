@@ -1,0 +1,37 @@
+.stats-cont {
+    position: fixed;
+    top: 2%;
+    left: 20%;
+    background-color: #000000a9;
+    width: 55%;
+}
+
+.stat-card {
+    margin-left: 3%;
+}
+
+.pie-rest {
+    position: absolute;
+    margin-left: -9.7rem;
+    z-index: 0;
+}
+
+.cover {
+    width: 7.4rem;
+    margin-left: -8.7rem;
+    margin-top: 1.28rem;
+    display: inline-block;
+    height: 7.4rem;
+    border-radius: 50%;
+    position: absolute;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color .3s, opacity .3s;
+    opacity: 1;
+}
+
+.cover:hover {
+    background-color: rgb(177, 255, 242);
+    opacity: .8;
+}

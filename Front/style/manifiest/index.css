@@ -1,1 +1,72 @@
-@import url("../main.css");
+    @import url("../main.css");
+    .div1 {}
+    
+    table {
+        margin-top: 1%;
+        width: 65%;
+        margin-left: 15%;
+        transition: opacity .3s;
+    }
+    
+    .td1 {
+        width: 20%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        padding-left: 1%;
+    }
+    
+    .td2 {
+        width: 70%;
+    }
+    
+    .td3 {
+        width: 10%;
+    }
+    
+    .search-cont {
+        margin-left: 1%;
+        margin-bottom: 0%;
+        margin-top: 1%;
+    }
+    
+    .search-inp {
+        width: 15rem;
+        font-size: 1.3rem;
+    }
+    
+    .search-btn {
+        font-size: 1.2rem;
+    }
+    
+    .play-btn {
+        border-radius: 10%;
+        width: 80%;
+        background-color: #ffa357;
+        height: 3rem;
+        font-size: 1.8rem;
+    }
+
+    .paginator-cont{
+        margin: 3% 0%;
+        text-align: center;
+        background-color: #b0fff82c;
+        width: 50%;
+    }
+
+    .btn-pag{
+        background-color: #dd7c2c;
+        border: none;
+        border-radius: 25%;
+        font-size: 1.3rem;
+        padding-left: 1%;
+        padding-right: 1%;
+        text-align: center;
+        margin: 0% .3%;
+        transition: background-color .2s;
+    }
+
+    .btn-pag:hover{
+        background-color: #ffa357;
+        color: #b0fff8;
+
+    }

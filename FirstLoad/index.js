@@ -44,7 +44,11 @@ const index = [0, 10];
                 "rally_lv": 0,
                 "race_lv": 0,
                 "special_lv": 0,
-                "money": 0
+                "money": 0,
+                "rally_exp": 0,
+                "race_exp": 0,
+                "special_exp": 0,
+
             };
 
             // let txt = "{"
@@ -97,7 +101,7 @@ const index = [0, 10];
 const prepare_db_file = (newdata) => {
     const found = data.filter(d => d.id == newdata.id)[0];
     if (found == undefined) {
-        data.push(found)
+        data.push(newdata)
     }
 }
 
