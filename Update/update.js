@@ -68,11 +68,15 @@ module.exports = {
             data[index] = d;
         }
 
+        // let fileload = fs.readFileSync(path_main + 'cars/' + d.name + "/init.json");
+        // fileload = JSON.parse(fileload.toString());
+
+        fs.writeFileSync(path_main + 'cars/' + d.name + "/init.json", JSON.stringify(d));
     })
 
-
     fs.writeFileSync(path_main + "db.cars.js", parse_data_to_text())
-        // const filedata = parse_data_to_text()
+
+    // const filedata = parse_data_to_text()
 
 })()
 

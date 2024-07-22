@@ -41,10 +41,6 @@ const index = [0, 40];
             const data = {
                 "name": car.name,
                 "id": i,
-                "rally_lv": 0,
-                "race_lv": 0,
-                "special_lv": 0,
-                "money": 0,
                 "rally_exp": 0,
                 "race_exp": 0,
                 "special_exp": 0,
