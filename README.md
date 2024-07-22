@@ -20,3 +20,11 @@ Modulos:
 Instalaciones : Solo es necesario Nodejs , FirstLoad y Update requiren ser corridos con Nodejs (npm para usar nodemon o simplemente node).
 
 Ejecucion: 
+
+-F4_A1_START.bat: Primero ejecuta FirstLoad para verificar que todos los autos esten correctamente creados y luego abre en msedge el front.
+
+-F4_A1_SAVE.bat: Primero ejecuta SaveData y descarga en /Dowloads el archivo save. Luego espera a la respuesta del usuario para la ejecucion del script Update
+
+Notas: Actualizar el Update con el / los posibles folders donde puede encontrarse el save
+
+
