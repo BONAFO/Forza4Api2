@@ -2,7 +2,7 @@ FORZA 4 API 1
 
 Descricion:
 
-Una simple api de forma con una db local de sus coches para poder hacer un sistema de niveles para c/u.
+Una simple api de Forza 4 con una db local de sus coches para poder hacer un sistema de niveles para c/u.
 Una simple y divertida forma de alargar mas F4 =)
 
 Modulos:
