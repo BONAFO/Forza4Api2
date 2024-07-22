@@ -2,38 +2,54 @@ document.getElementById("back").onclick = () => {
     window.location.href = "./index.html";
 }
 
+const BASEURL = "../DB/cars/";
 const id = sessionStorage.getItem("car-id");
 
 let found;
 
-const first_deco =() => {
+const first_deco = () => {
     const temp = localStorage.getItem("temp");
     let datafound;
-    if(temp !=  null){
-       const unziped = JSON.parse(unzip(temp))
-       datafound = unziped.filter(dat => dat.id == id)[0];
-       if(datafound == undefined){
-        datafound = data.filter(dat => dat.id == id)[0];
-        unziped.push(datafound)
-        const coded = zip(unziped);
-        localStorage.setItem('temp', coded)
-       }
-          
-    }else{
+    if (temp != null) {
+        let unziped = JSON.parse(unzip(temp))
+        datafound = unziped.filter(dat => dat.id == id)[0];
+        if (datafound == undefined) {
+            datafound = data.filter(dat => dat.id == id)[0];
+            unziped.push(datafound)
+            unziped = unziped.filter(un => un != undefined || un != null);
+            const coded = zip(unziped);
+            localStorage.setItem('temp', coded)
+        }
+
+    } else {
         datafound = data.filter(dat => dat.id == id);
         const coded = zip(datafound);
         datafound = datafound[0]
         localStorage.setItem('temp', coded)
+
+
     }
 
-  
+
     return datafound
 }
-
 
 found = first_deco()
 document.getElementById("car-name").textContent = found.name;
 console.log(found);
+
+
+
+let loaded = false;
+document.getElementById("img").src = BASEURL + found.name + "/" + "img.png";
+document.getElementById("img").onerror = (e) => {
+    if (!loaded) {
+        e.target.src = './media/default_car_img.jpg';
+        loaded = true;
+    }
+}
+
+
 
 // if (localStorage.getItem("temp")) {
 //     found = JSON.parse(localStorage.getItem("temp")).filter(dat => dat.id == id)[0];
@@ -107,16 +123,16 @@ for (let i = 0; i < covers.length; i++) {
                     const temp = JSON.parse(unzip(localStorage.getItem("temp")));
 
                     let index = temp.filter(dat => dat.id == id)[0];
-                    index =temp.indexOf(index);
+                    index = temp.indexOf(index);
 
                     temp[index] = found;
-                    
+
                     const zipped = zip(temp);
                     localStorage.setItem("temp", zipped)
-                    // let foundsave = found;
-                    // if (temp) {
-                    //     foundsave = temp.filter(dat => dat.id == id)[0];
-                    // }
+                        // let foundsave = found;
+                        // if (temp) {
+                        //     foundsave = temp.filter(dat => dat.id == id)[0];
+                        // }
 
 
 
@@ -132,7 +148,7 @@ for (let i = 0; i < covers.length; i++) {
 
 // const decode =()=>{
 //     // const data = localStorage.getItem("temp")
-    
+
 //     const 
 // }
 

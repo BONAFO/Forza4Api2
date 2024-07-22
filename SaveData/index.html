@@ -13,38 +13,24 @@
             background-color: black;
         }
     </style>
+
+    <script src="../Front/libs/pako.js"></script>
+    <script src="../Front/libs/zip.js"></script>
     <script>
         const save = localStorage.getItem("temp");
+        const data = unzip(save);
 
-        const contenido = new Blob([save], {
+        const contenido = new Blob([data], {
             type: 'application/json'
         });
 
         let enlace = document.createElement('a');
         enlace.href = URL.createObjectURL(contenido);
-        enlace.download = "save.json";
+        enlace.download = "forza_4_api_2_save.json";
         document.body.appendChild(enlace);
         enlace.click();
         document.body.removeChild(enlace);
-
-        function descargarTxt() {
-            var texto = "Hola, este es un archivo de texto de ejemplo.";
-            var nombreArchivo = "archivo.txt";
-
-            var contenido = new Blob([texto], {
-                type: 'application/json'
-            });
-
-            var enlace = document.createElement('a');
-            enlace.href = URL.createObjectURL(contenido);
-            enlace.download = nombreArchivo;
-
-            document.body.appendChild(enlace);
-
-            enlace.click();
-
-            document.body.removeChild(enlace);
-        }
+        // localStorage.removeItem("temp")
     </script>
 
 </body>

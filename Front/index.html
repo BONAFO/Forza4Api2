@@ -10,7 +10,8 @@
     <script src="./libs/pako.js"></script>
     <script src="libs/math.js"></script>
     <script src="libs/zip.js"></script>
-    <script src="js/config.js"> </script>
+    <script src="js/config.js">
+    </script>
     <link rel="stylesheet" href="style/manifiest/index.css">
     <link rel="stylesheet" href="style/manifiest/grafic.css">
 
@@ -24,7 +25,7 @@
     </style>
 
     <div class="background">
-        <img class="w-100" src="https://i.pinimg.com/736x/59/d0/65/59d06532ebb45f4aa75c38f24e836a6a.jpg" alt="">
+        <img class="w-100" src="./media/default_car_img.jpg" alt="">
     </div>
 
 
@@ -52,9 +53,9 @@
     </div>
     <div style="margin-left: 15%;">
         <div class="w-75 paginator-cont">
-            <button class="btn-pag"><</button>
+            <button class="btn-pag" id="paginator-prev"><</button>
             <div style="display: inline;" id="paginator-pages"></div>
-            <button class="btn-pag">></button>
+            <button class="btn-pag" id="paginator-next"> ></button>
         </div>
     </div>
 
@@ -66,6 +67,8 @@
     <div id="scripts-temp"></div>
     <script src="../DB/db.cars.js"></script>
     <script src="js/exp.js"></script>
+    <script src="js/paginator.js"></script>
+
     <script src="js/index.js"></script>
 
 

@@ -1,17 +1,16 @@
 //  CREATING THE TABLE
 
-const BASEURL = "../../DB/cars/";
+const BASEURL = "../DB/cars/";
 const cre = (element) => {
     return document.createElement(element)
 }
 
 
-
+let cards_data = [];
 sessionStorage.removeItem("car-id")
 
 
 let clearner = [];
-
 
 const build_stats = (id, value, stat) => {
     const div1 = cre("div");
@@ -68,17 +67,27 @@ const build_stats = (id, value, stat) => {
 
 const build_content_table = (cars) => {
     const table = document.getElementById("cars");
-    let unziped = unzip(localStorage.getItem("temp"));
 
-    if (unziped) {
-        unziped = JSON.parse(unziped);
-    }else{
+
+    let unziped
+
+    try {
+        unziped = unzip(localStorage.getItem("temp"));
+
+        if (unziped) {
+            unziped = JSON.parse(unziped);
+        } else {
+            unziped = [];
+        }
+
+    } catch (error) {
         unziped = [];
     }
+
     cars.map(dat => {
 
         const found = unziped.filter(d => d.id == dat.id)[0];
-        if(found){
+        if (found) {
             dat = found;
         }
         const tr = cre("tr");
@@ -110,7 +119,7 @@ const build_content_table = (cars) => {
 
 
         const params = [exp_calculations(dat.rally_exp), exp_calculations(dat.race_exp), exp_calculations(dat.special_exp)];
-        console.log(params);
+        // console.log(params);
         const rally_stats = build_stats(`${dat.id}-rally`, params[0].percent, `RALLY - LV: ${params[0].lv}`);
         td2.append(rally_stats)
 
@@ -170,71 +179,11 @@ const build_table = (cars) => {
 
 
 
-const paginate_content =(data =[])=>{
-    let AP = sessionStorage.getItem("actual-page") || 0
-    sessionStorage.setItem("actual-page", AP)
-
-   return data.slice(paginator_config.perpage * AP, paginator_config.perpage * (AP + 1) )
-
-}
-
-
-const update_table = (search) => {
-    return data.filter(
-        fil =>
-            fil.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-
-    );
-}
-
-
-const build_paginator =(cars)=>{
-
-    const paginator = document.getElementById("paginator-pages")
-    paginator.textContent = "";
-    const Tpages = Math.ceil(cars.length / paginator_config.perpage);
-;
-
-    for (let i = 1; i <= Tpages; i++) {
-        const button = cre("button");
-        button.className = "btn-pag";
-        button.textContent = i;
-        button.onclick =()=>{
-            let AP = sessionStorage.getItem("actual-page") || 0
-
-            if(AP != i -1 ){
-                sessionStorage.setItem("actual-page", i - 1)
-                const table_content = paginate_content(cars)
-                build_table(table_content)
-            }
-        }
-
-        paginator.append(button)
-        
-    }
-
-}
-
-
-
-
-document.getElementById("search").oninput = (e) => {
-
-    sessionStorage.removeItem('actual-page')
-    const filted = update_table(e.target.value);
-    const table_content = paginate_content(filted)
-    build_paginator(filted);
-    build_table(table_content)
-    
-    // build_paginator(update_table(e.target.value))
-
-}
 
 
 (() => {
-   const table_content = paginate_content(data)
-
+    cards_data = data;
+    const table_content = paginate_content()
     build_table(table_content)
-    build_paginator(data)
-    // build_table(data)
+    build_paginator()
 })()

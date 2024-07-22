@@ -10,7 +10,7 @@ try {
     console.log(error);
 }
 
-const index = [0, 10];
+const index = [0, 40];
 
 (async() => {
     const path_main = path.join(__dirname, '../DB/');
@@ -26,15 +26,15 @@ const index = [0, 10];
     }
 
 
-    let i = 0;
+    let i = index[0];
     let interval = setInterval(async() => {
 
 
-        if (i < 10) {
+        if (i < index[1]) {
             const car = cars[i];
             const invalids = '/:*?¿"<>|'.split("")
             invalids.map(inv => car.name = car.name.replaceAll(inv, ""))
-            const folder_name = `${car.marca} - ${car.name}`;
+            const folder_name = `${car.name}`;
             const url = path.join(__dirname, '../DB/cars/') + folder_name;
 
 

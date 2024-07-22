@@ -1,0 +1,28 @@
+.paginator-cont {
+    margin: 3% 0%;
+    text-align: center;
+    background-color: #b0fff82c;
+    width: 50%;
+}
+
+.btn-pag {
+    background-color: #dd7c2c;
+    border: none;
+    border-radius: 25%;
+    font-size: 1.3rem;
+    padding-left: 1%;
+    padding-right: 1%;
+    text-align: center;
+    margin: 0% .3%;
+    transition: background-color .2s, opacity .3s;
+}
+
+.btn-pag:hover {
+    background-color: #ffa357;
+    color: #b0fff8;
+}
+
+.pag-selected {
+    background-color: #ffa357 !important;
+    color: #b0fff8 !important;
+}
