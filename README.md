@@ -25,6 +25,5 @@ Ejecucion:
 
 -F4_A1_SAVE.bat: Primero ejecuta SaveData y descarga en /Dowloads el archivo save. Luego espera a la respuesta del usuario para la ejecucion del script Update
 
-Notas: Actualizar el Update con el / los posibles folders donde puede encontrarse el save
-
+Notas: Actualizar el Update con el / los posibles folders donde puede encontrarse el save despues de usar para no perder los datos.
 
